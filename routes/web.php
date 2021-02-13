@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/ambulance', 'AmbulanceController@index')->name('ambulance.index');
+
+Route::get('/bed', 'BedController@index')->name('bed.index');
+
+Route::get('/birth', 'BirthController@index')->name('birth.index');
+
+Route::get('/blood', 'BloodController@index')->name('blood.index');
+
+Route::get('/death', 'DeathController@index')->name('death.index');
+
+Route::get('/department', 'DepartmentController@index')->name('department.index');
