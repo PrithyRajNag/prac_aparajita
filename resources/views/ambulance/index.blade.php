@@ -7,7 +7,7 @@
             <div class="card border-success">
                 <h4 class="card-header bg-success d-flex justify-content-between">
                     <span class="text-light align-self-center">Ambulance List</span>
-                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addAmbulance"><i class="fas fa-plus-circle"></i>&nbsp; Add Ambulance</a>
+                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addAmbulance"><i class="fas fa-plus-circle"></i>&nbsp; Add</a>
                 </h4>
                 <div class="card-body f-14">
                     <div class="table-responsive" id="showDoctorList">

@@ -7,7 +7,7 @@
             <div class="card border-success">
                 <h4 class="card-header bg-success d-flex justify-content-between">
                     <span class="modal-title text-light align-self-center">Birth Report</span>
-                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addBirth"><i class="fas fa-plus-circle"></i>&nbsp; ADD Birth</a>
+                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addBirth"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
                 </h4>
                 <div class="card-body f-12">
                     <div class="table-responsive" id="">

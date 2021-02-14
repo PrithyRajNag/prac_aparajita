@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BedController extends Controller
+class DashboardController extends Controller
 {
     public function index(){
-        return view('bed.index');
+        return view('dashboard.index');
     }
 }

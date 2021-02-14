@@ -6,7 +6,7 @@
         <div class="card border-success">
             <h4 class="card-header bg-success d-flex justify-content-between">
                 <span class="text-light align-self-center">Blood Donor List</span>
-                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addDonor"><i class="fas fa-plus-circle"></i>&nbsp; ADD Donor</a>
+                <a href="#" class="btn btn-light" data-toggle="modal" data-target="#addDonor"><i class="fas fa-plus-circle"></i>&nbsp; ADD</a>
             </h4>
             <div class="card-body f-12">
                 <div class="table-responsive" id="">
@@ -21,7 +21,7 @@
                             <th>Last Donation Date</th>
                             <th>Phone</th>
                             <th>Email</th>
-                            <th width="120px;">Option</th>
+                            <th>Option</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,10 +50,10 @@
 <!-- End Blood Donor List Model -->
 
 <!-- Start New Blood Donor Model -->
-@include('blood.create')
+@include('blood.blood_donor.create')
 <!-- End New Blood Donor Model -->
 
 <!-- Start Edit Blood Donor Model -->
-@include('blood.edit')
+@include('blood.blood_donor.edit')
 <!-- End Edit Blood Donor Model -->
 @endsection

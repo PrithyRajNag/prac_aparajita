@@ -15,9 +15,9 @@
                             <a href="admin-departments.php"><i class="fas fa-building"></i> Departments</a>
                         </li>
 
-                        <li>
-                            <a href="admin-patient.php"><i class="fas fa-stethoscope"></i> Out Patient</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="admin-patient.php"><i class="fas fa-stethoscope"></i> Out Patient</a>--}}
+{{--                        </li>--}}
 
                         <li  data-toggle="collapse" data-target="#doctor" class="collapsed">
                             <a href="#"><i class="fas fa-user-md"></i> Doctor <span class="arrow"></span></a>

@@ -16,16 +16,32 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('index');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/ambulance', 'AmbulanceController@index')->name('ambulance.index');
 
-Route::get('/bed', 'BedController@index')->name('bed.index');
+Route::get('/assign-bed', 'Bed\AssignBedController@index')->name('bed.index');
+
+Route::get('/bed-type', 'Bed\BedTypeController@index')->name('bed.bed_type.index');
+
+Route::get('/bed-list', 'Bed\BedListController@index')->name('bed.bed_list.index');
 
 Route::get('/birth', 'BirthController@index')->name('birth.index');
 
-Route::get('/blood', 'BloodController@index')->name('blood.index');
+Route::get('/blood-donor', 'Blood\BloodDonorController@index')->name('blood_donor.index');
+
+Route::get('/blood/input', 'Blood\BloodInputController@index')->name('blood_input.index');
+
+Route::get('/blood/output', 'Blood\BloodOutputController@index')->name('blood_output.index');
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
 Route::get('/death', 'DeathController@index')->name('death.index');
 
 Route::get('/department', 'DepartmentController@index')->name('department.index');
+
+Route::get('/doctor', 'Doctor\DoctorController@index')->name('doctor.index');
+
+Route::get('/doctor/appointment', 'Doctor\DoctorAppointmentController@index')->name('.index');

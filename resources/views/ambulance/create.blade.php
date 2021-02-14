@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-info">
-                <h4 class="modal-title text-light">Add Ambulance</h4>
+                <h4 class="modal-title text-light">Add</h4>
                 <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body row">
