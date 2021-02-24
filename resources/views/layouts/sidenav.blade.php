@@ -8,7 +8,7 @@
                 <div class="menu-list">
                     <ul id="menu-content" class="menu-content collapse out">
                         <li>
-                            <a href="admin-dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                            <a href={{route('dashboard.index')}}><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                         </li>
 
                         <li>
@@ -47,7 +47,7 @@
                             <li class="active"><a href="admin-staff.php">Add Staff</a></li>
                             <li><a href="admin-staffAll.php">All Staff</a></li>
                             <li><a href="#">Accountant List</a></li>
-                            <li><a href="#">Nourse List</a></li>
+                            <li><a href="#">Nurse List</a></li>
                             <li><a href="#">Receptionist List</a></li>
                         </ul>
 

@@ -1,6 +1,6 @@
 
 <!-- Start Edit Doctor Catagory Model -->
-<div class="modal fade" id="editDoctorCatagory">
+<div class="modal fade" id="editDepartment">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-dark">

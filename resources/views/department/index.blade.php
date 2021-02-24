@@ -9,8 +9,8 @@
                 <a href="#" class="btn btn-light" data-toggle="modal" data-target="#add"><i class="fas fa-plus-circle"></i>&nbsp; Add</a>
             </h4>
             <div class="card-body f-14">
-                <div class="table-responsive" id="showDoctorList">
-                    <table class="table table-striped text-canter">
+                <div class="table-responsive" id="showDepartmentList">
+                    <table class="table table-striped text-center">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -20,16 +20,30 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>701</td>
-                            <td>Surgery 1</td>
-                            <td>Surgery Department</td>
-                            <td>
-                                <a href="#" class="btn btn-primary f-12" data-toggle="modal" data-target="#editDoctorCatagory"><i class="fas fa-edit"></i>&nbsp; Edit</a>
 
-                                <a href="#" class="btn btn-danger f-12" data-toggle="modal" data-target="#"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
-                            </td>
-                        </tr>
+                            @foreach($departments as $department)
+                                <tr>
+                                    <td>{{$department->id}}</td>
+                                    <td>{{$department->name}}</td>
+                                    <td>{{$department->description}}</td>
+                                    <td>
+                                       <a href="#" class="btn btn-primary f-12" data-toggle="modal" data-target="#editDepartment"><i class="fas fa-edit"></i>&nbsp; Edit</a>
+
+                                       <a href="#" class="btn btn-danger f-12" data-toggle="modal" data-target="#"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+{{--                        <tr>--}}
+{{--                            <td>701</td>--}}
+{{--                            <td>Surgery 1</td>--}}
+{{--                            <td>Surgery Department</td>--}}
+{{--                            <td>--}}
+{{--                                <a href="#" class="btn btn-primary f-12" data-toggle="modal" data-target="#editDepartment"><i class="fas fa-edit"></i>&nbsp; Edit</a>--}}
+
+{{--                                <a href="#" class="btn btn-danger f-12" data-toggle="modal" data-target="#"><i class="fas fa-trash-alt"></i>&nbsp; Delete</a>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
                         </tbody>
                     </table>
                 </div>

@@ -40,8 +40,24 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
 Route::get('/death', 'DeathController@index')->name('death.index');
 
+
+
+
+
+Route::get('department/show', 'DepartmentController@show')->name('department.show');
+
+Route::post('/department/create', 'DepartmentController@store')->name('department.create');
+
 Route::get('/department', 'DepartmentController@index')->name('department.index');
+
+
+
+
+
+
+
+
 
 Route::get('/doctor', 'Doctor\DoctorController@index')->name('doctor.index');
 
-Route::get('/doctor/appointment', 'Doctor\DoctorAppointmentController@index')->name('.index');
+Route::get('/doctor/appointment', 'Doctor\DoctorAppointmentController@index')->name('doctor_appointment.index');
