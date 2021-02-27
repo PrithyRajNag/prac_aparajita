@@ -67,13 +67,66 @@
 
 @section('js')
     <script>
+{{--        let r ={{ Request::segment(1) }};--}}
+{{--        let r ={{ \Request::segment(3) }};--}}
+{{--        console.log(r)--}}
+
+
+
+// Add this to the main script
         function showData(item) {
             // $('#name').html(item.name);
             // $('#description').html(item.description);
             // console.log(item.description);
 
+            $("input[name*='id']").val(item.id);
             $("input[name*='name']").val(item.name);
             $("textarea[name*='description']").val(item.description);
         }
+
+// Add this to the main script(For Create)
+        $('#createForm').on('submit', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url:'/'+ {{ Request::segment(1) }} + '/store',
+                method:"POST",
+                data:$(this).serialize(),
+                beforeSend: function () {
+                    $('#createBtn').attr('disabled', true);
+                },
+                error: function (xhr, status, error) {
+
+                },
+                success: function () {},
+            });
+        })
+
+
+
+
+// Add this to the main script(For Update)
+
+function editData(e) {
+    e.preventDefault();
+    var id  = $("input[name*='id']").val();
+    console.log(id);
+    // let _url = `/posts/${id}`;
+    // $('#titleError').text('');
+    // $('#descriptionError').text('');
+
+    // $.ajax({
+    //     url: _url,
+    //     type: "GET",
+    //     success: function(response) {
+    //         if(response) {
+    //             $("#post_id").val(response.id);
+    //             $("#title").val(response.title);
+    //             $("#description").val(response.description);
+    //             $('#post-modal').modal('show');
+    //         }
+    //     }
+    // });
+}
     </script>
 @endsection
