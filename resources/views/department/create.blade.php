@@ -8,7 +8,7 @@
                 <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body row">
-                <form role="form" action="{{route('department.create')}}" onsubmit="return validation()" method="POST" style="width: 100%; display: contents;">
+                <form role="form" action="{{route('department.store')}}" onsubmit="return validation()" method="POST" style="width: 100%; display: contents;">
 
                     @csrf {{--added--}}
                     <div class="form-group col-sm-12">

@@ -11,8 +11,8 @@ class DepartmentController extends Controller
 {
     public function index(){
 
-        $departments =Department::all();
-        return view('department.index', ['departments'=>$departments]);
+        $contentData =Department::all();
+        return view('department.index', compact('contentData'));
     }
     /**
      * Store a newly created resource in storage.
@@ -40,9 +40,8 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        $departments =Department::find($id);
-//        return view('department.index',compact($departments));
-        return view('department.index',['departments'=>'departments']);
+        $department = Department::where('id',$id)->first();
+        return view('department.edit',['department'=>$department]);
     }
 
     /**
@@ -54,7 +53,31 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $department = Department::where('id',$id)->first();
+        $department->name = $request->name;
+        $department->description = $request->description;
+        $department->save();
+        return redirect()->route('department.index');
+
+//        return "Updated Successfully";
+//        return response('Hello World')->withoutCookie('name');
+
+
+//        $department = Department::find($id)->update([
+//            'name' => $request->get('name'),
+//            'description'=> $request->get('description'),
+//        ]);
+//        return back();
+
+
+//        $department = Department::find($id);
+//        ([
+//        $department->name = $request->get('name'),
+//         $department->description= $request->get('description'),
+//          ]);
+//        $department->save();
+//          return back();
+
     }
 
     /**
@@ -65,6 +88,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Department::where('id',$id)->delete();
+//        return redirect()->route('department.index');
+        return "Department is deleted";
     }
 }

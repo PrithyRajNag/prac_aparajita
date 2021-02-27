@@ -1,30 +1,37 @@
 
-<!-- Start Edit Doctor Catagory Model -->
+<!-- Start Edit Doctor Category Model -->
 <div class="modal fade" id="editDepartment">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-dark">
-                <h4 class="modal-title text-light">Edit Doctor Catagory</h4>
+                <h4 class="modal-title text-light">Edit Doctor Category</h4>
                 <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body row">
-                <form role="form" action="" class="clearfix" method="post" style="width: 100%; display: contents;">
+                <form role="form" method="POST" action="{{route('department.update', $item->id)}}" class="clearfix"  style="width: 100%; display: contents;">
+                    @method('PUT')
+                    @csrf
+
+{{--                    <input type="hidden" name="id" value="{{$item->id}}">--}}
+
                     <div class="form-group col-sm-12">
                         <label>Departments Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Name" required>
+                        <input type="text" name="name" id="name" class="form-control" required>
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label>Description</label>
-                        <textarea name="profile" class="form-control" placeholder="Write Your Profile Information....." rows="2"></textarea>
+                        <textarea name="description" id="description" class="form-control" rows="2"></textarea>
                     </div>
 
                     <div class="form-group mb-20 col-sm-4 offset-4">
-                        <input type="submit" name="editDoctorCatagoryBtn" id="editDoctorCatagoryBtn" value="Save Now" class="btn btn-primary btn-block btn-lg">
+{{--                        <input type="submit" name="editBtn" id="editBtn" value="Save Now" class="btn btn-primary btn-block btn-lg">--}}
+                        <button type="submit" name="editBtn" id="editBtn" value="Save Now" class="btn btn-primary btn-block btn-lg">Save Now</button>
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- End Edit Doctor Catagory Model -->
+<!-- End Edit Doctor Category Model -->

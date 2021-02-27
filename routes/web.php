@@ -44,14 +44,15 @@ Route::get('/death', 'DeathController@index')->name('death.index');
 
 
 
-Route::get('department/show', 'DepartmentController@show')->name('department.show');
+//Route::get('department/show', 'DepartmentController@show')->name('department.show');
 
-Route::post('/department/create', 'DepartmentController@store')->name('department.create');
+Route::post('/department/store', 'DepartmentController@store')->name('department.store');
 
 Route::get('/department', 'DepartmentController@index')->name('department.index');
 
-
-
+Route::get('/department/{department}', 'DepartmentController@show')->name('department.show');
+Route::put('/department/{department}/update', 'DepartmentController@update')->name('department.update');
+Route::delete('/department/{department}/destroy', 'DepartmentController@destroy')->name('department.destroy');
 
 
 
