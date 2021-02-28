@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateDepartmentRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Department;
+use phpDocumentor\Reflection\Types\Boolean;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DepartmentController extends Controller
 {
@@ -48,16 +51,33 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param int $id
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDepartmentRequest $request, int $id)
     {
-        $department = Department::where('id',$id)->first();
-        $department->name = $request->name;
-        $department->description = $request->description;
-        $department->save();
-        return redirect()->route('department.index');
+//        return $request->all();
+
+        $item = Department::find($id);
+
+        if (!$item) {
+            // return 404 error
+            throw new NotFoundHttpException('Department not found');
+        }
+
+        if ($request->has('name') && $request->get('name')) {
+            $item->name = $request->name;
+        }
+        if ($request->has('description') && $request->get('description')) {
+            $item->description = $request->description;
+        }
+
+        return $item->save();
+
+//        $department = Department::where('id',$id)->first();
+//        $department->name = $request->name;
+//        $department->description = $request->description;
+//        $department->save();
+//        return redirect()->route('department.index',$id);
 
 //        return "Updated Successfully";
 //        return response('Hello World')->withoutCookie('name');
@@ -77,6 +97,10 @@ class DepartmentController extends Controller
 //          ]);
 //        $department->save();
 //          return back();
+
+
+//        return redirect()->route('department.index');
+//
 
     }
 

@@ -67,66 +67,139 @@
 
 @section('js')
     <script>
-{{--        let r ={{ Request::segment(1) }};--}}
-{{--        let r ={{ \Request::segment(3) }};--}}
-{{--        console.log(r)--}}
+        // Clear error messages
+        $('#createFormBtn').click(function() {
+            $('#name_error').text('');
+            $('#description_error').text('');
+            $('#createBtn').attr('disabled', true);
+        });
+
+        // Browser validation
+        $("input[name*='name']").keyup(function () {
+            let value_input = $("input[name*='name']").val();
+
+            let regexp = /[^a-zA-Z. ]/g ;
+            if (value_input.match(regexp)) {
+                $("input[name*='name']").val(value_input.replace(regexp,''))
+            }
+
+            if (value_input.length < 3) {
+                $("#name_error").text("Minimum 3 Character Required");
+                $('#createBtn').attr('disabled', true);
+                return;
+            }
+            $("#name_error").text('');
+            $('#createBtn').attr('disabled', false);
+        });
 
 
+// Add this to the main script(To show Data)
+    function showData(item) {
+        // $('#name').html(item.name);
+        // $('#description').html(item.description);
+        // console.log(item.description);
 
-// Add this to the main script
-        function showData(item) {
-            // $('#name').html(item.name);
-            // $('#description').html(item.description);
-            // console.log(item.description);
-
-            $("input[name*='id']").val(item.id);
-            $("input[name*='name']").val(item.name);
-            $("textarea[name*='description']").val(item.description);
-        }
+        $("input[name*='id']").val(item.id);
+        $("input[name*='name']").val(item.name);
+        $("textarea[name*='description']").val(item.description);
+    }
 
 // Add this to the main script(For Create)
-        $('#createForm').on('submit', function (e) {
-            e.preventDefault();
+    $('#createForm').on('submit', function (e) {
+        e.preventDefault();
 
-            $.ajax({
-                url:'/'+ {{ Request::segment(1) }} + '/store',
-                method:"POST",
-                data:$(this).serialize(),
-                beforeSend: function () {
-                    $('#createBtn').attr('disabled', true);
-                },
-                error: function (xhr, status, error) {
+        $.ajax({
+            url: '/' + {{ Request::segment(1) }} +'/store',
+            method: "POST",
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $('#createBtn').attr('disabled', true);
+            },
+            error: function (xhr, status, error) {
 
-                },
-                success: function () {},
-            });
-        })
-
-
+            },
+            success: function () {
+            },
+        });
+    })
 
 
 // Add this to the main script(For Update)
-
-function editData(e) {
+$('#editDepartment').on('submit', function (e) {
     e.preventDefault();
-    var id  = $("input[name*='id']").val();
+
+    let id  = $("input[name*='id']").val();
+    let name  = $("#name").val();
+    let description  = $("#description").val();
+    console.log('Value log');
     console.log(id);
-    // let _url = `/posts/${id}`;
-    // $('#titleError').text('');
-    // $('#descriptionError').text('');
+    console.log(name);
+    console.log(description);
+
+    $.ajax({
+        {{--url: "/'"+ {{ Request::segment(1) }} + "'/'"+ id +"'/update",--}}
+{{--        url: "{{ route('department.update') }}",--}}
+        url: '/department/'+ id + '/update',
+        method: "PUT",
+        data: {
+            _token: "{{ csrf_token() }}",
+            id: id,
+            name: name,
+            description: description,
+        },
+        success: function(response) {
+            if(response) {
+                console.log(response);
+                // $("#id").val(response.id);
+                // $("#name").val(response.name);
+                // $("#description").val(response.description);
+                $('#editDepartment').modal('hide');
+                setInterval('location.reload()', 5000);
+            }
+        }
+    });
+
+    {{--$.ajax({--}}
+    {{--    url: '/' + {{ Request::segment(1) }} +'/store',--}}
+    {{--    method: "POST",--}}
+    {{--    data: $(this).serialize(),--}}
+    {{--    beforeSend: function () {--}}
+    {{--        $('#createBtn').attr('disabled', true);--}}
+    {{--    },--}}
+    {{--    error: function (xhr, status, error) {--}}
+
+    {{--    },--}}
+    {{--    success: function () {--}}
+    {{--    },--}}
+    {{--});--}}
+})
+
+// function editData() {
+//
+//     e.preventDefault();
+//     // $('#editDepartment').modal('show');
+//     var id  = $("input[name*='id']").val();
+//     console.log(id);
+//     return;
+
+    {{--let _url='/'+ {{ Request::segment(1) }} + '/'+ id +'/update';--}}
+    {{--console.log(_url);--}}
+    {{--$('#nameError').text('');--}}
+    {{--$('#descriptionError').text('');--}}
 
     // $.ajax({
     //     url: _url,
-    //     type: "GET",
+    //     type: "PUT",
     //     success: function(response) {
     //         if(response) {
-    //             $("#post_id").val(response.id);
-    //             $("#title").val(response.title);
+    //             $("#id").val(response.id);
+    //             $("#name").val(response.name);
     //             $("#description").val(response.description);
-    //             $('#post-modal').modal('show');
+    //             $('#index_modal').modal('show');
     //         }
     //     }
     // });
-}
+// }
+// });
     </script>
 @endsection

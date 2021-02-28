@@ -13,13 +13,13 @@
                     @csrf {{--added--}}
                     <div class="form-group col-sm-12">
                         <label>Departments Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                        <input type="text" name="name"  class="form-control" placeholder="Name">
                         <div id="nameError" class="text-danger"></div>
                     </div>
 
                     <div class="form-group col-sm-12">
                         <label>Description</label>
-                        <textarea name="description" id="description" class="form-control" placeholder="Write Your Profile Information....." rows="2"></textarea>
+                        <textarea name="description"  class="form-control" placeholder="Write Your Profile Information....." rows="2"></textarea>
                     </div>
 
                     <div class="form-group mb-20 col-sm-4 offset-4">

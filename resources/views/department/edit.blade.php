@@ -9,10 +9,10 @@
             </div>
             <div class="modal-body row">
                 <form role="form" method="POST" action="" class="clearfix"  style="width: 100%; display: contents;">
-{{--                    @csrf--}}
-{{--                    @method('PUT')--}}
+                    @csrf
+                    @method('PUT')
 
-                    <input type="hidden" name="id">
+                    <input type="hidden" name="id" id="id">
 
                     <div class="form-group col-sm-12">
                         <label>Departments Name</label>
@@ -26,7 +26,7 @@
 
                     <div class="form-group mb-20 col-sm-4 offset-4">
 {{--                        <input type="submit" name="editBtn" id="editBtn" value="Save Now" class="btn btn-primary btn-block btn-lg">--}}
-                        <button type="submit" name="editBtn" id="editBtn" value="Save Now" onclick="editData(e.target)" class="btn btn-primary btn-block btn-lg">Save Now</button>
+                        <button type="submit" name="editBtn" id="editBtn" value="Save Now" class="btn btn-primary btn-block btn-lg">Save Now</button>
                     </div>
 
                 </form>
