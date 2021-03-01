@@ -4,11 +4,11 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-dark">
-                <h4 class="modal-title text-light">Edit Doctor Category</h4>
+                <h4 class="modal-title text-light">Edit Department</h4>
                 <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body row">
-                <form role="form" method="POST" action="" class="clearfix"  style="width: 100%; display: contents;">
+                <form role="form"  action="#" class="clearfix"  style="width: 100%; display: contents;">
                     @csrf
                     @method('PUT')
 

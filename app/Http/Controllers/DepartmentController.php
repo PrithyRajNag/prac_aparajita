@@ -2,37 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
+use App\Repositories\DepartmentRepository;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\Department;
-use phpDocumentor\Reflection\Types\Boolean;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DepartmentController extends Controller
 {
-    public function index(){
+    /**
+     * @var DepartmentRepository
+     */
+    private $repository;
 
-        $contentData =Department::all();
+    public function __construct(DepartmentRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function index()
+    {
+        $contentData = $this->repository->all();
         return view('department.index', compact('contentData'));
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CreateDepartmentRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateDepartmentRequest $request): RedirectResponse
     {
-        $department = new Department();
-        $department->name = $request->name;
-        $department->description = $request->description;
-        $department->save();
+        $data = $this->repository->create($request);
 
-        return redirect()->route('department.index');
-//        return "Department Has Been Created Successfully";
-
+        return redirect()->route('department.index')->with('success', 'Department Created');
     }
 
     /**
@@ -41,79 +45,37 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
-        $department = Department::where('id',$id)->first();
-        return view('department.edit',['department'=>$department]);
-    }
+//    public function show(int $id)
+//    {
+//        $department = Department::find($id)->first();
+//        return view('department.edit',['department'=>$department]);
+//    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateDepartmentRequest $request
      * @param int $id
+     * @return RedirectResponse
      */
-    public function update(UpdateDepartmentRequest $request, int $id)
+    public function update(UpdateDepartmentRequest $request, int $id): bool
     {
-//        return $request->all();
+       return $this->repository->update($request, $id);
 
-        $item = Department::find($id);
-
-        if (!$item) {
-            // return 404 error
-            throw new NotFoundHttpException('Department not found');
-        }
-
-        if ($request->has('name') && $request->get('name')) {
-            $item->name = $request->name;
-        }
-        if ($request->has('description') && $request->get('description')) {
-            $item->description = $request->description;
-        }
-
-        return $item->save();
-
-//        $department = Department::where('id',$id)->first();
-//        $department->name = $request->name;
-//        $department->description = $request->description;
-//        $department->save();
-//        return redirect()->route('department.index',$id);
-
-//        return "Updated Successfully";
-//        return response('Hello World')->withoutCookie('name');
-
-
-//        $department = Department::find($id)->update([
-//            'name' => $request->get('name'),
-//            'description'=> $request->get('description'),
-//        ]);
-//        return back();
-
-
-//        $department = Department::find($id);
-//        ([
-//        $department->name = $request->get('name'),
-//         $department->description= $request->get('description'),
-//          ]);
-//        $department->save();
-//          return back();
-
-
-//        return redirect()->route('department.index');
-//
+//       return redirect()->route('department.index')->with('success', 'Department Updated');
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        Department::where('id',$id)->delete();
-//        return redirect()->route('department.index');
-        return "Department is deleted";
+        $data = $this->repository->delete($id);
+
+        return redirect()->route('department.index');
     }
 }

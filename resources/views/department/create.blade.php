@@ -19,7 +19,7 @@
 
                     <div class="form-group col-sm-12">
                         <label>Description</label>
-                        <textarea name="description"  class="form-control" placeholder="Write Your Profile Information....." rows="2"></textarea>
+                        <textarea name="description" class="form-control" placeholder="Write Your Profile Information....." rows="2"></textarea>
                     </div>
 
                     <div class="form-group mb-20 col-sm-4 offset-4">
