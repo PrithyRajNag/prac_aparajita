@@ -6,12 +6,16 @@
     <!-- Start Department List Model -->
     <div class="row justify-content-center">
         <div class="col-lg-12 m-3">
+            <div id="success-msg" class="alert alert-success"></div>
             @if(session('success'))
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{ session('success') }}
                 </div>
             @endif
+
+
+
             <div class="card border-success">
                 <h4 class="card-header bg-success d-flex justify-content-between">
                     <span class="text-light align-self-center">Departments List</span>
@@ -32,7 +36,7 @@
 
                                 @foreach($contentData as $item)
                                     <tr>
-                                        <td>{{$item->id}}</td>
+                                        <td>{{ ++$loop->index }}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->description}}</td>
                                         <td>
@@ -62,6 +66,7 @@
             </div>
         </div>
     </div>
+{{--    {{  Request::path() }}--}}
     <!-- End Department List Model -->
 
     <!-- Start Add New Department Model -->
@@ -77,6 +82,8 @@
 
 @section('js')
     <script>
+
+        {{--let route = {{Request::path()}};--}}
         // Clear error messages
         $('#createFormBtn').click(function() {
             $('#name_error').text('');
@@ -142,6 +149,7 @@
     console.log(id);
     console.log(name);
     console.log(description);
+    console.log(toString( route ));
 
     $.ajax({
         url: '/department/'+ id + '/update',
@@ -154,15 +162,34 @@
         },
         success: function(response) {
             if(response) {
-                // console.log(response);
+                $("#success-msg").text(response);
+                console.log(response);
                 // $("#id").val(response.id);
                 // $("#name").val(response.name);
                 // $("#description").val(response.description);
                 $('#editDepartment').modal('hide');
-                setInterval('location.reload()', 2000);
+                setInterval('location.reload()', 5000);
             }
-        }
-    });
+        },
+        error: function (xhr, status, error) {
+            let errors = JSON.parse(xhr.responseText);
+            // console.log(errors);
+            // console.log(errors.errors);
+            // console.log(errors.errors.name);
+            // console.log(errors.errors.name[0]);
+            let errorName = errors.errors.name[0];
+            $("#update_name_error").text(errorName);
+            // console.log(typeof( errors));
+            // console.log(status);
+            // console.log(error);
+
+        },
+    })
+
+    {{--    // error: function (request, error) {--}}
+    {{--    //     alert("Name is too short ");--}}
+    {{--    // },--}}
+    {{--});--}}
 
     {{--$.ajax({--}}
     {{--    url: '/' + {{ Request::segment(1) }} +'/store',--}}

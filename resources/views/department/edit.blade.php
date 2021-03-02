@@ -17,6 +17,7 @@
                     <div class="form-group col-sm-12">
                         <label>Departments Name</label>
                         <input type="text" name="name" id="name" class="form-control" required>
+                        <div id="update_name_error" class="text-danger"></div>
                     </div>
 
                     <div class="form-group col-sm-12">

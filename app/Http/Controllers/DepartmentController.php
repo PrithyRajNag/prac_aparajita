@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Repositories\DepartmentRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
@@ -34,9 +35,11 @@ class DepartmentController extends Controller
      */
     public function store(CreateDepartmentRequest $request): RedirectResponse
     {
+
         $data = $this->repository->create($request);
 
         return redirect()->route('department.index')->with('success', 'Department Created');
+
     }
 
     /**
@@ -56,13 +59,16 @@ class DepartmentController extends Controller
      *
      * @param UpdateDepartmentRequest $request
      * @param int $id
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function update(UpdateDepartmentRequest $request, int $id): bool
+    public function update(UpdateDepartmentRequest $request, int $id): JsonResponse
     {
-       return $this->repository->update($request, $id);
-
-//       return redirect()->route('department.index')->with('success', 'Department Updated');
+        $data = $this->repository->update($request, $id);
+//        return $this->repository->update($request, $id);
+//        session()->put('success', 'Department Updated');
+//         return update($request, $id)->with('success', 'Department Updated');
+       return response()->json('Department Updated');
+//       return redirect()->back()->with('success', 'Department Updated');
 
     }
 
@@ -76,6 +82,6 @@ class DepartmentController extends Controller
     {
         $data = $this->repository->delete($id);
 
-        return redirect()->route('department.index');
+        return redirect()->route('department.index')->with('success', 'Department Deleted');
     }
 }

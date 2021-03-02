@@ -23,7 +23,12 @@ class DepartmentRepository
         if ($request->has('description') && $request->get('description')) {
             $model->description = $request->description;
         }
+//        else{return redirect()->route('department.index')->with('success', 'Department Not Created');}
+//        if ($request->has('name') && $request->get('!name')) {
+//           return redirect()->route('department.index')->with('success', 'Department Not Created');
+//        }
         return $model->save();
+
     }
 
 //    public function get($id)

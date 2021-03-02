@@ -34,6 +34,9 @@
             width: 0;
             transition: 0.3s all ease-in-out;
         }
+        #success-msg:empty{
+            display: none;
+        }
     </style>
 </head>
 <body>
