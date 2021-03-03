@@ -8,7 +8,7 @@
                 <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body row">
-                <form role="form" action="{{route('department.store')}}" onsubmit="return validation()" method="POST" style="width: 100%; display: contents;">
+                <form role="form" id="createForm" action="{{route('department.store')}}" method="POST" style="width: 100%; display: contents;">
 
                     @csrf {{--added--}}
                     <div class="form-group col-sm-12">
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-group mb-20 col-sm-4 offset-4">
-                        <button type="submit" name="add" value="Save" class="btn btn-success btn-block btn-lg">Submit</button>
+                        <button id="createBtn" type="submit" name="add" value="Save" class="btn btn-success btn-block btn-lg">Submit</button>
                     </div>
                 </form>
             </div>

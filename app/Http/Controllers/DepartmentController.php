@@ -64,10 +64,12 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, int $id): JsonResponse
     {
         $data = $this->repository->update($request, $id);
+        return response()->json('Department Updated');
+
+
 //        return $this->repository->update($request, $id);
 //        session()->put('success', 'Department Updated');
 //         return update($request, $id)->with('success', 'Department Updated');
-       return response()->json('Department Updated');
 //       return redirect()->back()->with('success', 'Department Updated');
 
     }

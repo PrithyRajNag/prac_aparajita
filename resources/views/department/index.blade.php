@@ -19,7 +19,7 @@
             <div class="card border-success">
                 <h4 class="card-header bg-success d-flex justify-content-between">
                     <span class="text-light align-self-center">Departments List</span>
-                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#add"><i class="fas fa-plus-circle"></i>&nbsp; Add</a>
+                    <a href="#" id="createFormBtn" class="btn btn-light" data-toggle="modal" data-target="#add"><i class="fas fa-plus-circle"></i>&nbsp; Add</a>
                 </h4>
                 <div class="card-body f-14">
                     <div class="table-responsive" id="showDepartmentList">
@@ -123,7 +123,7 @@
         e.preventDefault();
 
         $.ajax({
-            url: '/' + {{ Request::segment(1) }} +'/store',
+            url: '/department/store',
             method: "POST",
             data: $(this).serialize(),
             beforeSend: function () {
@@ -149,17 +149,19 @@
     console.log(id);
     console.log(name);
     console.log(description);
-    console.log(toString( route ));
+    // console.log(toString( route ));
 
     $.ajax({
         url: '/department/'+ id + '/update',
         method: "PUT",
+        // data: $(this).serialize(),
         data: {
             _token: "{{ csrf_token() }}",
             id: id,
             name: name,
             description: description,
         },
+        // console.log(description);
         success: function(response) {
             if(response) {
                 $("#success-msg").text(response);
@@ -173,8 +175,8 @@
         },
         error: function (xhr, status, error) {
             let errors = JSON.parse(xhr.responseText);
-            // console.log(errors);
-            // console.log(errors.errors);
+            console.log(errors);
+            console.log(errors.errors);
             // console.log(errors.errors.name);
             // console.log(errors.errors.name[0]);
             let errorName = errors.errors.name[0];

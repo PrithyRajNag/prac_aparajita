@@ -9,10 +9,12 @@
             </div>
             <div class="modal-body row">
                 <form role="form"  action="#" class="clearfix"  style="width: 100%; display: contents;">
-                    @csrf
                     @method('PUT')
+                    @csrf
 
                     <input type="hidden" name="id" id="id">
+{{--                    <input type="hidden" name="_method" value="PUT">--}}
+{{--                    <input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
                     <div class="form-group col-sm-12">
                         <label>Departments Name</label>
